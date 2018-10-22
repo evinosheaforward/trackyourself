@@ -1,6 +1,6 @@
 # Readme for the trackyourself project -- Firefox (ONLY, for now)
 
-track yourself is a project that runs locally, is open source, and is built only to allow people to collect data about their web browsing, without any third party. Ideally, the project would also allow you to use other local data analysis tools to explore your data. 
+trackyourself is a project that runs locally, is open source, and is built to allow people to collect data about their web browsing, without any third party. Ideally, the project would also allow you to use other local data analysis tools to explore your data.
 
 ## The project goal is to allow a user to track themselves using an open source tool, with no third party.
 
@@ -36,16 +36,16 @@ To get the server running (you will have to restart the server on re-boot) cd in
 trackyourself/server
 ```
 
-and build the images (if you have not since the last time you cloned the repo)
+and build the images (if you have not since the last time you cloned the repo) by running:
 
 ```
-docker-compose build
+s/build.sh
 ```
 
 and then finally, run the docker-compose setup with:
 
 ```
-docker-compose up
+s/run.sh
 ```
 
 Your server should be running, you can monitor that the server is receiving the requests through the log in the terminal.

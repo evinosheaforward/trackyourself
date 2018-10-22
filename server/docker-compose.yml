@@ -1,28 +1,30 @@
-version: '3'
+version: "3"
+
 services:
   db:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.1.2
-    restart: always
+    image: postgres
+    hostname: db
     environment:
-      POSTGRES_USER: elastagirl
-      POSTGRES_PASSWORD: jackjack123
-      POSTGRES_DB: MrIncredible
-      DB_HOST: db
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres-dev
+      POSTGRES_PASSWORD: s3cr3tp4ssw0rd
     ports:
-      - "5499:5499"
-  app:
-    image: productivity-frontend
-    command: bundle exec rails s -p 3004 -b '0.0.0.0'
+      - 5499:5499
     volumes:
-      - ".:/productivity"
+      - ./postgres-data:/var/lib/postgresql/data
+    restart: always
+  app:
+    image: trackyourself:recorder
+    volumes:
+      - ./recorder/src/:/go/src/
+      - ./data/:/data/
+    working_dir: /go/src/
     ports:
-      - "9299:9299"
-    depends_on:
-      - db
-    links:
-      - db
+      - 9299:9299
     env_file:
-      - .env
-
-
-docker run -p  -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" docker.elastic.co/elasticsearch/elasticsearch:5.1.2
+      - ./.env
+    # depends_on:
+    #   - db
+    # links:
+    #   - db
+    command: ["go", "run", "./main.go"]
