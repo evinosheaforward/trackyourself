@@ -1,5 +1,4 @@
 {
-
   "manifest_version": 2,
   "name": "trackyourself",
   "version": "0.1",
@@ -10,18 +9,18 @@
     "48": "icons/border-48.png"
   },
 
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "js": ["trackyourself.js"]
-    }
-  ],
   "description": "Adds a browser action icon to the toolbar. Click the button to choose a beast. The active tab's body content is then replaced with a picture of the chosen beast. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#beastify",
   "homepage_url": "https://github.com/evinosheaforward/trackyourself",
 
   "permissions": [
-    "activeTab"
+		"webRequest",
+    "<all_urls>",
+		"http://localhost:9299/data"
   ],
+
+	"background": {
+    "scripts": ["trackyourself.js"]
+  },
 
   "browser_action": {
     "default_icon": "icons/beasts-32.png",

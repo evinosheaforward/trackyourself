@@ -18,3 +18,5 @@ ADD ./src $GOPATH/src/
 # should be able to build now
 WORKDIR $GOPATH/src/
 RUN go build -o main .
+
+CMD go run main.go
