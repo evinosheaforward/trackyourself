@@ -9,22 +9,19 @@ services:
       POSTGRES_USER: postgres-dev
       POSTGRES_PASSWORD: s3cr3tp4ssw0rd
     ports:
-      - 5499:5499
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - 5432:5432
     restart: always
   app:
-    image: trackyourself:recorder
+    image: recorder
     volumes:
-      - ./recorder/src/:/go/src/
       - ./data/:/data/
     working_dir: /go/src/
     ports:
       - 9299:9299
     env_file:
       - ./.env
-    # depends_on:
-    #   - db
-    # links:
-    #   - db
-    command: ["go", "run", "./main.go"]
+    depends_on:
+      - db
+    links:
+      - db
+    command: ["go", "run", "main.go"]

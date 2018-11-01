@@ -1,4 +1,11 @@
 function directData(requestDetails) {
+	if (requestDetails.url == "http://localhost:9299/data"
+			// || requestDetails.type == "image"
+		  // || requestDetails.type == "stylesheet"
+		  // || requestDetails.type == "script"
+			|| !(requestDetails.type == "main_frame") ) {
+		return;
+	}
 	console.log("$$$$$$$$$$$$$$$$$$$$$$$$");
 
 	var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance

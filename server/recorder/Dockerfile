@@ -6,17 +6,13 @@ RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 RUN  mkdir -p /go/src \
   && mkdir -p /go/bin \
   && mkdir -p /go/pkg
-ENV GOPATH=/go
-ENV PATH=$GOPATH/bin:$PATH
+# ENV GOPATH=/go
+# ENV PATH=$GOPATH/bin:$PATH
 
+ADD ./src/vendor/ /go/src/
+ADD ./src/record/ /go/src/record/
+ADD ./src/ /go/src/
 
-RUN mkdir -p $GOPATH/src/recorder
-#VOLUME ./src/:/go/src/
-# now copy your app to the proper build path
-ADD ./src $GOPATH/src/
-
-# should be able to build now
-WORKDIR $GOPATH/src/
-RUN go build -o main .
+WORKDIR /go/src/
 
 CMD go run main.go
