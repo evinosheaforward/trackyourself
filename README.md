@@ -10,7 +10,7 @@ In order to do this the project has to use two parts: the tracker (browser plugi
 
 This is supposed to be a simple plugin that tracks your data and send it all to your local server. Right now, all it tracks is when you send an HTTP request with type mainframe. The code is open source, so you can go see that the plugin is sending the data only to your local host. The plugin will create json of your data that it collects, and then will send it to the webserver/database that will also be running.
 
-The recommended way to install this plugin would be to to add the plugin as a temporary add-on. (See the MDN Docs)[https://support.mozilla.org/en-US/kb/unable-install-add-ons-extensions-or-themes?redirectlocale=en-US&redirectslug=Unable+to+install+add-ons#w_you-are-asked-to-download-the-add-on-rather-than-installing-it]
+The recommended way to install this plugin would be to to add the plugin as a temporary add-on. [See the MDN Docs](https://support.mozilla.org/en-US/kb/unable-install-add-ons-extensions-or-themes?redirectlocale=en-US&redirectslug=Unable+to+install+add-ons#w_you-are-asked-to-download-the-add-on-rather-than-installing-it)
 
 First, clone the repository:
 
