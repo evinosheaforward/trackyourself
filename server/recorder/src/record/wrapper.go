@@ -13,7 +13,7 @@ import (
 
 type dbconn interface {
 	Insert(string)
-	Select() string
+	Select() []string
 }
 
 type pgdb struct {
@@ -28,7 +28,8 @@ func (pg pgdb) Insert(reqJson string) {
 reqJson))
 }
 
-func (pg pgdb) Select() string {
+func (pg pgdb) Select() []string {
+	var reqData []string
 	var reqJson string
 	iter, err := pg.db.Query(
 "SELECT reqJson FROM reqData")
@@ -38,8 +39,9 @@ func (pg pgdb) Select() string {
 		if err := iter.Scan(&reqJson); err != nil {
 			check(err)
 		}
+		reqData = append(reqData, reqJson)
 	}
-	return reqJson
+	return reqData
 }
 
 func SetupDB(conn dbconn) {

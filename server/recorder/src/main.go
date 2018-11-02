@@ -13,11 +13,11 @@ import (
 )
 
 func main() {
-	log.Println("*************    START   *****************")
+	log.Println("***************** START *****************")
 	time.Sleep(5*time.Second)
 	conn := record.NewDBConn()
 	record.SetupDB(conn)
-	log.Println("************** DB SETUP *************")
+	log.Println("************** DB SETUP ******************")
   http.HandleFunc("/data",
 func (rw http.ResponseWriter, req *http.Request) {
 	jsonBytes, _ := ioutil.ReadAll(req.Body)
@@ -29,4 +29,5 @@ func (rw http.ResponseWriter, req *http.Request) {
   if err := http.ListenAndServe(os.Getenv("LISTEN_PORT"), nil); err != nil {
     panic(err)
   }
+	log.Println("**************** END ********************")
 }

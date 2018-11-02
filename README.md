@@ -10,14 +10,24 @@ In order to do this the project has to use two parts: the tracker browser plugin
 
 This is supposed to be a simple plugin that tracks your data as much as possible, and send it all to your local server. The code is open source, so you can go see that the plugin is sending the data only to your local host. The plugin will create json of your data that it collects, and then will send it to you webserver/database that will also be running.
 
-The recommended way to install this plugin would be to download the repo and add the plugin manually. for Firefox see:
+The recommended way to install this plugin would be to to add the plugin as a temporary add-on. (See the MDN Docs)[https://support.mozilla.org/en-US/kb/unable-install-add-ons-extensions-or-themes?redirectlocale=en-US&redirectslug=Unable+to+install+add-ons#w_you-are-asked-to-download-the-add-on-rather-than-installing-it]
 
- https://support.mozilla.org/en-US/kb/unable-install-add-ons-extensions-or-themes?redirectlocale=en-US&redirectslug=Unable+to+install+add-ons#w_you-are-asked-to-download-the-add-on-rather-than-installing-it
-
-note that the manifest.json file you will want to point Firefox to is
+First, clone the repository locally:
 
 ```
-trackyourself/plugin
+git clone https://github.com/evinosheaforward/trackyourself
+```
+
+and then add the plugin manually by going to about:debugging in your browser. The command line to do this is:
+
+```
+firefox about:debugging
+```
+
+Then click the button that says "Load Temporary Add-on...". Find the repository and select the manifest.json file:
+
+```
+trackyourself/plugin/manifest.json
 ```
 
 You will also need to set up the local server in order for this to do anything.
@@ -27,8 +37,8 @@ You will also need to set up the local server in order for this to do anything.
 This is a docker-compose setup that will have to be run manually. This gives you the ability to re-use the data however you may please!
 
 In order to use this, you must have both Docker, and docker-compose installed. (See:
-	https://docs.docker.com/install/linux/docker-ce/ubuntu/
-	https://docs.docker.com/compose/install/)
+	(docker)[https://docs.docker.com/install/linux/docker-ce/ubuntu/] and (docker-compose)[
+	https://docs.docker.com/compose/install/])
 
 To get the server running (you will have to restart the server on re-boot) cd into:
 
@@ -39,13 +49,13 @@ trackyourself/server
 and build the images (if you have not since the last time you cloned the repo) by running:
 
 ```
-s/build.sh
+s/build
 ```
 
 and then finally, run the docker-compose setup with:
 
 ```
-s/run.sh
+s/run
 ```
 
 Your server should be running, you can monitor that the server is receiving the requests through the log in the terminal.
